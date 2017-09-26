@@ -32,6 +32,8 @@ You might find the FPS Counter/HUD Display useful in Chrome developer tools desc
 My Solution:
 1. Brougth declaration of variables outside the `for` loops(as mentioned in `main.js` in comments).
 2. Created a new `for` loop to assign style calculations and preventing the browser from rendering and painting so much.
+3. Changed from `querySelector('#id')` and `querySelector('.class-name')` to `getElementById('id')` and `getElementByClassName('class-name')`.
+4. Calculating array length, which is a part of conditional statement, in a local variable so the array's length property is not accessed to check its value at each iteration. (i.e. more efficiency)
 
 #### More Customisation
 
