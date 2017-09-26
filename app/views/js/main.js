@@ -454,8 +454,9 @@ var resizePizzas = function(size) {
     var randomPizzaContainer = document.getElementsByClassName("randomPizzaContainer");
     var pizzaContainerLength = randomPizzaContainer.length;
     var newwidth = [];
+    var dx = determineDx(randomPizzaContainer, size);
     for (var i = 0; i < pizzaContainerLength; i++) {
-      var dx = determineDx(randomPizzaContainer[i], size);
+      
       newwidth[i] = (randomPizzaContainer[i].offsetWidth + dx) + 'px';
     }
     // Preventing the browser from rerendering and painting so much by creating a new for loop to set the styles. 
@@ -515,6 +516,7 @@ function updatePositions() {
   for (var i = 0; i < len; i++) {
     var phase = Math.sin((stuff) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+	 
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -528,7 +530,9 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+window.addEventListener('scroll', function() {
+	window.requestAnimationFrame(updatePositions);
+});
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
